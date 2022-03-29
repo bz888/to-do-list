@@ -1,9 +1,12 @@
 import React from 'react'
+import Home from './Home'
 
 function App () {
   console.log('app hit')
   return (
-    <h1>Hello World, client side rendering</h1>
+    <>
+      <Home/>
+    </>
   )
 }
 

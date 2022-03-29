@@ -80,6 +80,12 @@
     }
   },
   "dependencies": {
+    "@mantine/core": "^4.1.0",
+    "@mantine/dates": "^4.1.0",
+    "@mantine/form": "^4.1.0",
+    "@mantine/hooks": "^4.1.0",
+    "@mantine/notifications": "^4.1.0",
+    "dayjs": "^1.11.0",
     "express": "^4.17.1",
     "ts-node": "^10.7.0"
   },
