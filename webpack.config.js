@@ -6,7 +6,7 @@ module.exports = {
   mode: 'development',
   output: {
     path: path.join(__dirname, 'server/public'),
-    filename: 'bundle.js',
+    filename: 'bundle.js'
   },
   module: {
     rules: [
@@ -16,14 +16,14 @@ module.exports = {
         exclude: /node_modules/,
         options: {
           // disable type checker - we will use it in fork plugin
-          transpileOnly: true,
-        },
-      },
-    ],
+          transpileOnly: true
+        }
+      }
+    ]
   },
   plugins: [new ForkTsCheckerWebpackPlugin()],
   resolve: {
-    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
-  devtool: 'source-map',
+  devtool: 'source-map'
 }
