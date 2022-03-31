@@ -4,6 +4,7 @@ import { formVals } from './types'
 
 function Home() {
   const [input, setInput] = useState<formVals>({ user: '', password: '' })
+
   const navigate = useNavigate()
 
   function handleChange(e: ChangeEvent<HTMLInputElement>) {
@@ -15,6 +16,7 @@ function Home() {
 
   function handleSubmit(e: SyntheticEvent) {
     e.preventDefault()
+    navigate('/dashboard')
   }
 
   return (

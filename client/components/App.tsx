@@ -4,15 +4,13 @@ import Dashboard from './Dashboard'
 import Home from './Home'
 
 function App() {
-  console.log('app hit')
+  // console.log('app hit')
   return (
-    <>
-      <Routes>
-        <Route path='/' element={<Home />}>
-          <Route path='dashboard' element={<Dashboard />} />
-        </Route>
-      </Routes>
-    </>
+    <Routes>
+      <Route path='/' element={<Home />}>
+      </Route>
+      <Route path='dashboard' element={<Dashboard />} />
+    </Routes>
   )
 }
 

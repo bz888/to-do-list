@@ -13,7 +13,8 @@
   },
   "include": [
     "**/*.ts",
-    "**/*.tsx", "webpack.config.js",
+    "**/*.tsx",
+    "webpack.config.js",
   ],
   "exclude": [
     "node_modules",
