@@ -1,7 +1,7 @@
 import React from 'react'
 import ListItem from './ListItem'
 
-export default function Dashboard() {
+export default function Dashboard () {
   console.log('dash hit')
 
   const mockData = [

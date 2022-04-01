@@ -2,19 +2,19 @@ import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { formVals } from './types'
 
-function Home() {
+function Home () {
   const [input, setInput] = useState<formVals>({ user: '', password: '' })
 
   const navigate = useNavigate()
 
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+  function handleChange (e: ChangeEvent<HTMLInputElement>) {
     setInput({
       ...input,
       [e.target.name]: e.target.value
     })
   }
 
-  function handleSubmit(e: SyntheticEvent) {
+  function handleSubmit (e: SyntheticEvent) {
     e.preventDefault()
     navigate('/dashboard')
   }

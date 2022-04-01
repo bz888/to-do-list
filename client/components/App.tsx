@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom'
 import Dashboard from './Dashboard'
 import Home from './Home'
 
-function App() {
+function App () {
   // console.log('app hit')
   return (
     <Routes>

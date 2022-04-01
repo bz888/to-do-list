@@ -1,7 +1,7 @@
 import React from 'react'
 import { mockData } from './types'
 
-export default function ListItem(props: mockData) {
+export default function ListItem (props: mockData) {
   const { progression, details, date } = props
   return (
     <div>
