@@ -2,6 +2,8 @@
 const path = require('path')
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const Dotenv = require('dotenv-webpack')
 
 module.exports = {
   entry: './client/index.tsx',
@@ -23,7 +25,7 @@ module.exports = {
       }
     ]
   },
-  plugins: [new ForkTsCheckerWebpackPlugin()],
+  plugins: [new ForkTsCheckerWebpackPlugin(), new Dotenv()],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx']
   },
