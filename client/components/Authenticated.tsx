@@ -1,5 +1,4 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { AffixProps } from '@mantine/core'
 import React, { ReactChild, ReactChildren } from 'react'
 
 interface AuxProps {
@@ -17,7 +16,7 @@ export function IfAuthenticated ({ children }: AuxProps) {
     : null
 }
 
-export function IfNotAuthenticated ({ children }: AffixProps) {
+export function IfNotAuthenticated ({ children }: AuxProps) {
   return !isAuthenticated()
     ? <>{ children }</>
     : null

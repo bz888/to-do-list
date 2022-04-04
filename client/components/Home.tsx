@@ -1,35 +1,34 @@
-import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { formVals } from './types'
+import { useAuth0 } from '@auth0/auth0-react'
+import React, { useEffect } from 'react'
+import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
+// import { useNavigate } from 'react-router-dom'
 
 function Home () {
-  const [input, setInput] = useState<formVals>({ user: '', password: '' })
+  const { loginWithRedirect, user, logout } = useAuth0()
+  useEffect(() => {
+    console.log(user)
+  }, [user])
+  // const navigate = useNavigate()
+  // console.log(user)
 
-  const navigate = useNavigate()
+  // user: bz888dev@gmail.com
+  // password: testing>123
 
-  function handleChange (e: ChangeEvent<HTMLInputElement>) {
-    setInput({
-      ...input,
-      [e.target.name]: e.target.value
-    })
-  }
-
-  function handleSubmit (e: SyntheticEvent) {
-    e.preventDefault()
-    navigate('/dashboard')
-  }
+  // {
+  //   redirectUri: `${window.location.origin}/register`
+  // }
 
   return (
     <div>
-      <h1>Welcome to your to do list</h1>
-      <form>
-        <label htmlFor="user">user: </label>
-        <input type='text' value={input.user} name='user' onChange={handleChange} />
+      <h1>welcome to your to do list</h1>
+      {/* {user} */}
+      <IfNotAuthenticated>
+        <button onClick={() => loginWithRedirect({})}>Login</button>
+      </IfNotAuthenticated>
 
-        <label htmlFor="password">password: </label>
-        <input type='password' value={input.password} name='password' onChange={handleChange} />
-        <button onClick={handleSubmit}>Login</button>
-      </form>
+      <IfAuthenticated>
+        <button onClick={() => logout()}>Logout</button>
+      </IfAuthenticated>
     </div>
   )
 }
