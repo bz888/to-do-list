@@ -1,15 +1,34 @@
 const path = require('path')
 const express = require('express')
+const { default: mongoose } = require('mongoose')
+require('dotenv').config()
 
+// App Config
 const server = express()
 server.use(express.static(path.join(__dirname, 'public')))
 server.use(express.json())
 
-server.use('/v1/*', (req, res) => res.sendStatus(404))
+const uri = process.env.URI
+// server.use('/v1/*', (req, res) => res.sendStatus(404))
 
 // i am not sure why, but we can investigate later on if we fuck up
 server.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './public/index.html'))
 })
+
+// Middlewares
+
+// DB config
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true
+}).then(() => console.log('MongoDB Connected...')).catch(err => console.error(err))
+
+// API Endpoints
+const todos = require('./routes/todos')
+server.use('/api/v1/todos', todos)
+
+// Listener
 
 module.exports = server
