@@ -21,8 +21,7 @@ server.get('*', (req, res) => {
 // DB config
 mongoose.connect(uri, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true
+  useUnifiedTopology: true
 }).then(() => console.log('MongoDB Connected...')).catch(err => console.error(err))
 
 // API Endpoints
