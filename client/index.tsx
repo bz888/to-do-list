@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     domain='dev-ll77ct3d.au.auth0.com'
     clientId='j8UD4h1MvV9mjpV61dWkONmY5qw95y9J'
     redirectUri={window.location.origin}
+    audience='https://todos/api'
     >
 
     <Router>
