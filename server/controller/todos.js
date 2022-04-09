@@ -31,6 +31,6 @@ const createTodo = async (req, res) => {
 
 module.exports = {
   getTodo,
-  createTodo
-  // getAllTodos
+  createTodo,
+  getAllTodos
 }

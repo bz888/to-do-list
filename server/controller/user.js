@@ -13,4 +13,4 @@ const createUser = async (req, res) => {
   res.status(StatusCodes.CREATED).json({ user: { email: user.email } })
 }
 
-module.exports = createUser
+module.exports = { createUser }

@@ -1,8 +1,10 @@
 import { Auth0Provider } from '@auth0/auth0-react'
 import React from 'react'
 import { render } from 'react-dom'
+import { Provider } from 'react-redux'
 import { BrowserRouter as Router } from 'react-router-dom'
 import App from './components/App'
+import store from './store'
 
 document.addEventListener('DOMContentLoaded', () => {
   render(
@@ -12,10 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
     redirectUri={window.location.origin}
     audience='https://todos/api'
     >
-
-    <Router>
-      <App />
-    </Router>
+      <Provider store={store}>
+        <Router>
+          <App />
+        </Router>
+      </Provider>
     </Auth0Provider>,
     document.getElementById('app')
   )

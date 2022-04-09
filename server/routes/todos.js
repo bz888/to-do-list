@@ -8,14 +8,13 @@ const checkJwt = require('../middleware/auth0')
 
 module.exports = router
 
-router.post('/', checkJwt, async (req, res) => {
-  const { todos } = req.body
-  const auth0Id = req.user?.sub
-  const newTodo = {
-    byUser: auth0Id,
+// routes that needs to be protected
 
-  }
-  Todo.create(req.body)
-    .then(() => res.json({ msg: 'todo added success' }))
-    .catch(err => res.status(500).json({ error: 'Unable to add todos' + err }))
-})
+// testing public route getAll
+
+// post route for todos
+// patch route (update)
+// get route
+// delete route
+
+// router.post('/', checkJwt, )
