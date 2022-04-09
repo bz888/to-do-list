@@ -23,10 +23,22 @@ const getTodo = async (req, res) => {
   res.status(StatusCodes.OK).json({ todo })
 }
 
+// Object structure incorrect
 const createTodo = async (req, res) => {
-  req.body.createdBy = req.user.auth0Id
-  const todo = await Todo.create(req.body)
-  res.status(StatusCodes.CREATED).json({ todo })
+  // console.log('auth0Id testing post route: ', req.user.auth0Id)
+  console.log('user sub testing post route: ', req.user?.sub)
+  // req.body.createdBy = req.user.auth0Id
+  const { todo } = req.body
+  // const auth0Id = req.user?.sub
+  // hard code auth0Id
+  const auth0Id = 'auth0|123'
+  const newTodo = {
+    createdBy: auth0Id,
+    description: todo.description,
+    progression: todo.progression
+  }
+  const todoDB = await Todo.create(newTodo)
+  res.status(StatusCodes.CREATED).json({ todoDB })
 }
 
 module.exports = {
