@@ -3,6 +3,7 @@ const { StatusCodes } = require('http-status-codes')
 // const { BadRequestError, UnauthenticatedError } = require('../errors')
 
 const createUser = async (req, res) => {
+  console.log('req.body, createUser: ', req.body)
   const newUser = req.body
   const { auth0Id, email } = newUser
   const userDB = {

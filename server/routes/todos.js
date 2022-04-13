@@ -13,7 +13,7 @@ module.exports = router
 // testing public route getAll
 router.get('/get/testing', getAllTodos)
 
-router.post('/post/testing', createTodo)
+router.post('/post/testing', checkJwt, createTodo)
 
 // post route for todos
 // patch route (update)
