@@ -9,10 +9,10 @@ import store from './store'
 document.addEventListener('DOMContentLoaded', () => {
   render(
     <Auth0Provider
-    domain='dev-ll77ct3d.au.auth0.com'
-    clientId='j8UD4h1MvV9mjpV61dWkONmY5qw95y9J'
+    domain='dev-9lx-84xw.au.auth0.com'
+    clientId='yf0pQKU7ZqdyYC03yXsYS394jYlDcrG5'
     redirectUri={window.location.origin}
-    audience='https://todos/api'
+    audience='https//todos/api'
     >
       <Provider store={store}>
         <Router>
