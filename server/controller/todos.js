@@ -32,7 +32,7 @@ const createTodo = async (req, res) => {
   // const auth0Id = req.user?.sub
   // hard code auth0Id
   const newTodo = {
-    createdBy: '62511a4283fa48258b0cccdf',
+    createdBy: '6257e020446c2206abe0f575',
     description: todo.description,
     progression: todo.progression
   }
