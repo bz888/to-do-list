@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "target": "es2017",
+    "rootDir": "./",
+    "moduleResolution": "Node",
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "strict": true,
+    "resolveJsonModule": true,
+    "jsx": "react",
+    "removeComments": true
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "webpack.config.js",
+  ],
+  "exclude": [
+    "node_modules",
+    "server/public"
+  ]
+}
