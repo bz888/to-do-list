@@ -2,11 +2,13 @@ const Todo = require('../models/Todo')
 const { StatusCodes } = require('http-status-codes')
 const { BadRequestError, NotFoundError } = require('../errors')
 
+// list all todos of user
 const getAllTodos = async (req, res) => {
   const todos = await Todo.find({ createdBy: req.user.userId }).sort('createdAt')
   res.status(StatusCodes.OK).json({ todos, count: todos.length })
 }
 
+// get individual todo
 const getTodo = async (req, res) => {
   const {
     user: { auth0Id },
@@ -21,6 +23,44 @@ const getTodo = async (req, res) => {
     throw new NotFoundError(`No todo with id ${todoId}`)
   }
   res.status(StatusCodes.OK).json({ todo })
+}
+
+// update
+const patchTodo = async (req, res) => {
+  const {
+    body: { progression, description },
+    user: { userId },
+    params: { id: todoId }
+  } = req
+
+  if (progression === '' || description === '') {
+    throw new BadRequestError('Progression or description fields cannot be empty')
+  }
+  const todo = await Todo.findByIdAndUpdate(
+    { _id: todoId, createdBy: userId },
+    req.body,
+    { new: true, runValidators: true }
+  )
+  if (!todo) {
+    throw new NotFoundError(`No Todo with id ${todoId}`)
+  }
+  res.status(StatusCodes.OK).json({ todo })
+}
+
+// delete
+const deleteTodo = async (req, res) => {
+  const {
+    user: { userId },
+    params: { id: todoId }
+  } = req
+  const todo = await Todo.findByIdAndRemove({
+    _id: todoId,
+    createdBy: userId
+  })
+  if (!todo) {
+    throw new NotFoundError(`No Todo with id ${todoId}`)
+  }
+  res.status(StatusCodes.OK).json(`${todo._id} has been deleted`)
 }
 
 // Object structure incorrect
@@ -43,5 +83,7 @@ const createTodo = async (req, res) => {
 module.exports = {
   getTodo,
   createTodo,
-  getAllTodos
+  getAllTodos,
+  deleteTodo,
+  patchTodo
 }
