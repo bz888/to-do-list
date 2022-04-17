@@ -1,19 +1,23 @@
 const jwt = require('express-jwt')
-const jwks = require('jwks-rsa')
+const jwksRsa = require('jwks-rsa')
 require('dotenv').config()
 
 const domain = process.env.DOMAIN
+console.log('checkJwt domain: ', domain)
 const audience = process.env.AUDIENCE
+console.log('checkJwt aduience: ', audience)
+// const domain = process.env.DOMAIN
+// const audience = process.env.AUDIENCE
 
 const checkJwt = jwt({
-  secret: jwks.expressJwtSecret({
+  secret: jwksRsa.expressJwtSecret({
     cache: true,
     rateLimit: true,
     jwksRequestsPerMinute: 5,
-    jwksUri: `${domain}/.well-known/jwks.json`
+    jwksUri: `https://${domain}/.well-known/jwks.json`
   }),
   audience: audience,
-  issuer: `${domain}/`,
+  issuer: `https://${domain}/`,
   algorithms: ['RS256']
 })
 

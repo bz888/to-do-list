@@ -11,7 +11,7 @@ const createUser = async (req, res) => {
     email
   }
   const user = await User.create(userDB)
-  res.status(StatusCodes.CREATED).json({ user: { email: user.email } })
+  res.status(StatusCodes.CREATED).json({ user: { email: user.email, id: user._id } })
 }
 
 module.exports = { createUser }
