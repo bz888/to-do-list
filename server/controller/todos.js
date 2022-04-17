@@ -68,13 +68,9 @@ const deleteTodo = async (req, res) => {
 const createTodo = async (req, res) => {
   console.log('auth0Id testing post route: ', req.user)
   console.log('user sub testing post route: ', req.body)
-  // req.body.createdBy = req.user.auth0Id
   const { todo } = req.body
   const auth0Id = req.user?.sub
-  // hard code auth0Id
   const newTodo = {
-    // createdBy: '62511a4283fa48258b0cccdf',
-    // createdBy: 'auth0|624a80dbfd5622007022442a',
     createdBy: auth0Id,
     description: todo.description,
     progression: todo.progression
