@@ -1,5 +1,5 @@
 import { SET_USER, CLEAR_USER } from '../actions/user'
-import { UserAction } from '../components/types'
+import { UserAction } from '../types/types'
 
 const emptyUser = {
   auth0Id: '',

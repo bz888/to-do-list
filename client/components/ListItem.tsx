@@ -1,5 +1,5 @@
 import React from 'react'
-import { mockData } from './types'
+import { mockData } from '../types/types'
 
 export default function ListItem (props: mockData) {
   const { progression, details, date } = props

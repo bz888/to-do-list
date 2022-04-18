@@ -1,6 +1,6 @@
 import React, { ChangeEvent, SyntheticEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { formVals } from './types'
+import { formVals } from '../types/types'
 
 function Login () {
   const [input, setInput] = useState<formVals>({ user: '', password: '' })
