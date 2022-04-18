@@ -10,9 +10,6 @@ function Home () {
   // const navigate = useNavigate()
   // console.log(user)
 
-  // user: bz888dev@gmail.com
-  // password: testing>123
-
   function handleLogin (e: SyntheticEvent) {
     e.preventDefault()
     loginWithRedirect()

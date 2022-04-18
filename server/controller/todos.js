@@ -4,7 +4,8 @@ const { BadRequestError, NotFoundError } = require('../errors')
 
 // list all todos of user
 const getAllTodos = async (req, res) => {
-  const todos = await Todo.find({ createdBy: req.user.userId }).sort('createdAt')
+  console.log(req.user)
+  const todos = await Todo.find({ createdBy: req.user?.sub }).sort('createdAt')
   res.status(StatusCodes.OK).json({ todos, count: todos.length })
 }
 
@@ -65,19 +66,21 @@ const deleteTodo = async (req, res) => {
 
 // Object structure incorrect
 const createTodo = async (req, res) => {
-  // console.log('auth0Id testing post route: ', req.user)
+  console.log('auth0Id testing post route: ', req.user)
   console.log('user sub testing post route: ', req.body)
-  // req.body.createdBy = req.user.auth0Id
   const { todo } = req.body
-  // const auth0Id = req.user?.sub
-  // hard code auth0Id
+  const auth0Id = req.user?.sub
   const newTodo = {
-    createdBy: '62511a4283fa48258b0cccdf',
+    createdBy: auth0Id,
     description: todo.description,
     progression: todo.progression
   }
-  const todoDB = await Todo.create(newTodo)
-  res.status(StatusCodes.CREATED).json({ todoDB: { message: todoDB } })
+  try {
+    const todoDB = await Todo.create(newTodo)
+    res.status(StatusCodes.CREATED).json({ todoDB: { message: todoDB } })
+  } catch (err) {
+    console.error('something wrong with create todo ' + err)
+  }
 }
 
 module.exports = {
