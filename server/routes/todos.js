@@ -11,7 +11,7 @@ module.exports = router
 // routes that needs to be protected
 
 // testing public route getAll
-router.get('/get/testing', getAllTodos)
+router.get('/get/testing', checkJwt, getAllTodos)
 
 router.post('/post/testing', createTodo)
 

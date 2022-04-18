@@ -14,8 +14,7 @@ const todoSchema = mongoose.Schema(
       default: Date.now()
     },
     createdBy: {
-      type: mongoose.Types.ObjectId,
-      ref: 'User',
+      type: String,
       required: [true, 'Please provide user']
     }
   },
