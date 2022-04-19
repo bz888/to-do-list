@@ -14,7 +14,7 @@ interface Action {
 export default function user (state = emptyUser, action: Action) {
   switch (action.type) {
     case SET_USER:
-      console.log(state)
+      // console.log(state)
       return action.user
 
     case CLEAR_USER:
