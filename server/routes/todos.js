@@ -1,6 +1,6 @@
 const express = require('express')
 // const Todo = require('../models/Todo')
-const { getAllTodos, createTodo } = require('../controller/todos')
+const { getAllTodos, createTodo, deleteTodo, patchTodo } = require('../controller/todos')
 // const db = require('../dbFunc/dbTodos')
 
 const router = express.Router()
@@ -14,6 +14,10 @@ module.exports = router
 router.get('/get/testing', checkJwt, getAllTodos)
 
 router.post('/post/testing', checkJwt, createTodo)
+
+router.delete('/delete/testing/:id', checkJwt, deleteTodo)
+
+router.put('/update/testing/:id', checkJwt, patchTodo)
 
 // post route for todos
 // patch route (update)

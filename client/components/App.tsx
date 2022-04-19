@@ -1,21 +1,37 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import React from 'react'
+import React, { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { cacheUser } from '../auth0-utils'
+import { MantineProvider, Button, ActionIcon, ColorSchemeProvider, ColorScheme, GlobalStyles } from '@mantine/core'
+import { Bulb, BulbOff } from 'tabler-icons-react'
+
 import Dashboard from './Dashboard'
 import Home from './Home'
+
 // import Login from './Login'
 
 function App () {
-  // console.log('app hit')
-
+  const [colorScheme, setColorScheme] = useState<ColorScheme>('light')
+  function handleColorScheme (value?: ColorScheme) {
+    setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
+  }
+  const dark = colorScheme === 'dark'
   cacheUser(useAuth0)
   return (
-    <Routes>
-      <Route path='/' element={<Home />}/>
-      <Route path='dashboard' element={<Dashboard />} />
-      {/* <Route path='login' element={<Login/>}/> */}
-    </Routes>
+    <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={handleColorScheme}>
+      <MantineProvider theme={{ fontFamily: 'IBM Plex Mono, monospace', colorScheme, headings: { fontFamily: 'IBM Plex Mono, monospace' } }} withGlobalStyles>
+        <Routes>
+          <Route path='/' element={<Home />}/>
+          <Route path='dashboard' element={<Dashboard />} />
+        </Routes>
+        <ActionIcon className='togglebtn'
+        onClick={() => handleColorScheme()}
+        title="Toggle color scheme"
+        >
+        {dark ? <BulbOff size={18} /> : <Bulb size={18} />}
+        </ActionIcon>
+      </MantineProvider>
+    </ColorSchemeProvider>
   )
 }
 

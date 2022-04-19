@@ -1,8 +1,11 @@
 import { useAuth0 } from '@auth0/auth0-react'
 import React, { SyntheticEvent, useEffect } from 'react'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
+import { Button, Title, Center, Group, SimpleGrid, Stack } from '@mantine/core'
+import { useStyles } from '../styles/mantineStyles'
 
 function Home () {
+  // const { classes } = useStyles()
   const { loginWithRedirect, user, logout } = useAuth0()
   useEffect(() => {
     console.log(user)
@@ -20,17 +23,41 @@ function Home () {
     logout()
   }
   return (
-    <div>
-      <h1>welcome to your to do list</h1>
+   <Center style={{ height: '100vh' }}>
+    <Stack align='center'>
+      <div>
+        <Title>welcome to your to do list</Title>
+      </div>
       {/* {user} */}
-      <IfNotAuthenticated>
-        <button onClick={handleLogin}>Login</button>
-      </IfNotAuthenticated>
+      {/* <Group> */}
+      <div>
+        <IfNotAuthenticated>
+          <Group position='center' spacing = 'xl'>
+            <Button variant="subtle" color="dark" onClick={handleLogin}>Login</Button>
+            <Button variant="subtle" color="dark" onClick={handleLogin}>SignUp</Button>
+          </Group>
+        </IfNotAuthenticated>
+      </div>
+      <div>
+        <IfAuthenticated>
+          <Button variant="subtle" color="dark" onClick={handleLogout}>Logout</Button>
+        </IfAuthenticated>
+      </div>
+      {/* </Group> */}
+      </Stack>
+   </Center>
 
-      <IfAuthenticated>
-        <button onClick={handleLogout}>Logout</button>
-      </IfAuthenticated>
-    </div>
+  // <div className={classes.wrapper}>
+  //   <Title>welcome to your to do list</Title>
+  //   {/* {user} */}
+  //   <IfNotAuthenticated>
+  //     <Button className={classes.child} onClick={handleLogin}>Login</Button>
+  //   </IfNotAuthenticated>
+
+  //   <IfAuthenticated>
+  //     <Button className={classes.child} onClick={handleLogout}>Logout</Button>
+  //   </IfAuthenticated>
+  // </div>
   )
 }
 

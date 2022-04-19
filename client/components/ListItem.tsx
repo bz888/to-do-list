@@ -1,13 +1,18 @@
-import React from 'react'
-import { mockData } from './types'
+import React, { SyntheticEvent } from 'react'
+import { ListItem, todoItem } from '../types/types'
 
-export default function ListItem (props: mockData) {
-  const { progression, details, date } = props
+export default function ListItem (props: ListItem) {
+  const { progression, description, createdAt, updatedAt } = props
+  function handleClick (e: SyntheticEvent) {
+    e.preventDefault()
+    console.log('hello')
+  }
   return (
     <div>
-      <input type="checkbox" checked={progression} />
-      <p>{details}</p>
-      <p>{date}</p>
+      <input type="checkbox" onChange={handleClick} checked={progression} />
+      <p>{description}</p>
+      <p>{createdAt}</p>
+      <p>{updatedAt}</p>
     </div>
   )
 }

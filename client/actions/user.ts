@@ -1,4 +1,4 @@
-import { UserAction } from '../components/types'
+import { UserAction } from '../types/types'
 
 export const SET_USER = 'SET_USER'
 export const CLEAR_USER = 'CLEAR_USER'

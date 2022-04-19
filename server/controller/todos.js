@@ -6,7 +6,8 @@ const { BadRequestError, NotFoundError } = require('../errors')
 const getAllTodos = async (req, res) => {
   console.log(req.user)
   const todos = await Todo.find({ createdBy: req.user?.sub }).sort('createdAt')
-  res.status(StatusCodes.OK).json({ todos, count: todos.length })
+  // res.status(StatusCodes.OK).json({ todos, count: todos.length })
+  res.status(StatusCodes.OK).json(todos)
 }
 
 // get individual todo
@@ -28,40 +29,47 @@ const getTodo = async (req, res) => {
 
 // update
 const patchTodo = async (req, res) => {
-  const {
-    body: { progression, description },
-    user: { userId },
-    params: { id: todoId }
-  } = req
+  // const {
+  //   body: { progression, description },
+  //   user: { userId },
+  //   params: { id: todoId }
+  // } = req
+  // const { todo } = req.body
 
-  if (progression === '' || description === '') {
-    throw new BadRequestError('Progression or description fields cannot be empty')
-  }
-  const todo = await Todo.findByIdAndUpdate(
-    { _id: todoId, createdBy: userId },
-    req.body,
+  // if (progression === '' || description === '') {
+  //   throw new BadRequestError('Progression or description fields cannot be empty')
+  // }
+  const { todo } = req.body
+  const patchTodo = await Todo.findByIdAndUpdate(
+    { _id: req.params.id, createdBy: req.user?.sub },
+    todo,
     { new: true, runValidators: true }
   )
-  if (!todo) {
-    throw new NotFoundError(`No Todo with id ${todoId}`)
+  if (!patchTodo) {
+    throw new NotFoundError(`No Todo with id ${req.params.id}`)
   }
   res.status(StatusCodes.OK).json({ todo })
 }
 
 // delete
 const deleteTodo = async (req, res) => {
-  const {
-    user: { userId },
-    params: { id: todoId }
-  } = req
-  const todo = await Todo.findByIdAndRemove({
-    _id: todoId,
-    createdBy: userId
-  })
-  if (!todo) {
-    throw new NotFoundError(`No Todo with id ${todoId}`)
+  // const {
+  //   params: { id: todoId }
+  // } = req
+  console.log('req.params: ', req.params)
+  console.log('auth0Id testing post route: ', req.user)
+  try {
+    const todo = await Todo.findByIdAndRemove({
+      _id: req.params.id,
+      createdBy: req.user?.sub
+    })
+    res.status(StatusCodes.OK).json(`${todo._id} has been deleted`)
+  } catch (err) {
+    throw new NotFoundError(`No Todo with id ${req.params.id}`)
   }
-  res.status(StatusCodes.OK).json(`${todo._id} has been deleted`)
+  // if (!todo) {
+
+  // }
 }
 
 // Object structure incorrect
