@@ -50,18 +50,23 @@ const patchTodo = async (req, res) => {
 
 // delete
 const deleteTodo = async (req, res) => {
-  const {
-    user: { userId },
-    params: { id: todoId }
-  } = req
-  const todo = await Todo.findByIdAndRemove({
-    _id: todoId,
-    createdBy: userId
-  })
-  if (!todo) {
-    throw new NotFoundError(`No Todo with id ${todoId}`)
+  // const {
+  //   params: { id: todoId }
+  // } = req
+  console.log('req.params: ', req.params)
+  console.log('auth0Id testing post route: ', req.user)
+  try {
+    const todo = await Todo.findByIdAndRemove({
+      _id: req.params.id,
+      createdBy: req.user?.sub
+    })
+    res.status(StatusCodes.OK).json(`${todo._id} has been deleted`)
+  } catch (err) {
+    throw new NotFoundError(`No Todo with id ${req.params.id}`)
   }
-  res.status(StatusCodes.OK).json(`${todo._id} has been deleted`)
+  // if (!todo) {
+
+  // }
 }
 
 // Object structure incorrect
