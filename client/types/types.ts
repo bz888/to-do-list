@@ -31,6 +31,7 @@ export interface todoItem {
   __v: number;
 }
 export interface ListItem {
+  id: string;
   progression: boolean;
   description: string;
   createdAt: string;
@@ -53,4 +54,16 @@ export interface todoPostAPI {
     description: string
     progression: boolean
   }
+}
+
+// AddTodo component
+export interface postFormType {
+  description: string
+  progression: boolean
+}
+
+export interface updateType {
+  description: string
+  progression: boolean
+  _id: string
 }

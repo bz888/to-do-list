@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { todoPostAPI } from '../types/types'
+import { postFormType, todoPostAPI, updateType } from '../types/types'
 
 const rootURL = '/api/v1'
 
@@ -24,9 +24,35 @@ export function getAllTodosAPI (token: string) {
     .catch(logError)
 }
 
-export function addTodoAPI (todo: todoPostAPI, token: string) {
+export function addTodoAPI (todo: postFormType, token: string) {
   return request.post(`${rootURL}/todos/post/testing`)
     .set('authorization', `Bearer ${token}`)
-    .send(todo)
+    .send({ todo })
     .then(res => res.body.todoDB)
+    .catch(logError)
+}
+
+export function patchTodoAPIParams (todo: updateType, token: string) {
+  return request.patch(`${rootURL}/todos/update/testing/${todo._id}`)
+    .set('authorization', `Bearer ${token}`)
+    .send({ todo })
+    .then(res => res.body.todoDB)
+    .catch(logError)
+}
+
+export function patchTodoAPI (todo: postFormType, token: string) {
+  console.log('patchTodoAPI: ', todo)
+
+  return request.patch(`${rootURL}/todos/update/testing/`)
+    .set('authorization', `Bearer ${token}`)
+    .send({ todo })
+    .then(res => res.body.todoDB)
+    .catch(logError)
+}
+
+export function deleteTodoAPIParams (id: string, token: string) {
+  return request.delete(`${rootURL}/todos/delete/testing/${id}`)
+    .set('authorization', `Bearer ${token}`)
+    .then(res => res.body.todoDB)
+    .catch(logError)
 }
