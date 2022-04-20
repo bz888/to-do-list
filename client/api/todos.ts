@@ -1,6 +1,7 @@
 import request from 'superagent'
+import { todoPostAPI } from '../types/types'
 
-const roolURL = '/api/v1'
+const rootURL = '/api/v1'
 
 function logError (err: ErrorEvent) {
   if (err.message === 'Forbidden') {
@@ -14,11 +15,18 @@ function logError (err: ErrorEvent) {
 }
 
 export function getAllTodosAPI (token: string) {
-  return request.get(`${roolURL}/todos/get/testing`)
+  return request.get(`${rootURL}/todos/get/testing`)
     .set('authorization', `Bearer ${token}`)
     .then(res => {
       // console.log('api: ', res.body)
       return res.body
     })
     .catch(logError)
+}
+
+export function addTodoAPI (todo: todoPostAPI, token: string) {
+  return request.post(`${rootURL}/todos/post/testing`)
+    .set('authorization', `Bearer ${token}`)
+    .send(todo)
+    .then(res => res.body.todoDB)
 }

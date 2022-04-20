@@ -47,3 +47,10 @@ export type TodoAction = {
 }
 
 export type DispatchTodoType = (args: TodoAction) => TodoAction
+
+export interface todoPostAPI {
+  todo: {
+    description: string
+    progression: boolean
+  }
+}

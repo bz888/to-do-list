@@ -1,4 +1,4 @@
-import { getAllTodosAPI } from '../api/api'
+import { getAllTodosAPI } from '../api/todos'
 import { DispatchTodoType, todoItem } from '../types/types'
 import { showError } from './error'
 

@@ -3,7 +3,7 @@ import React, { useEffect, SyntheticEvent, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { fetchTodoList } from '../actions/todos'
-import { getAllTodosAPI } from '../api/api'
+import { getAllTodosAPI } from '../api/todos'
 import { ActiveUser, TodoState, State, UserAction, todoItem } from '../types/types'
 import ListItem from './ListItem'
 
