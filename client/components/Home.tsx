@@ -3,6 +3,7 @@ import React, { SyntheticEvent, useEffect } from 'react'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import { Button, Title, Center, Group, SimpleGrid, Stack } from '@mantine/core'
 import { useStyles } from '../styles/mantineStyles'
+import { useNavigate } from 'react-router-dom'
 
 function Home () {
   // const { classes } = useStyles()
@@ -10,17 +11,26 @@ function Home () {
   useEffect(() => {
     console.log(user)
   }, [user])
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   // console.log(user)
 
   function handleLogin (e: SyntheticEvent) {
     e.preventDefault()
-    loginWithRedirect()
+    loginWithRedirect({
+      redirectUri: `${window.location.origin}/signedin`
+    })
   }
 
   function handleLogout (e: SyntheticEvent) {
     e.preventDefault()
-    logout()
+    logout({
+      returnTo: window.location.origin
+    })
+  }
+
+  function handleRedirect (e: SyntheticEvent) {
+    e.preventDefault()
+    navigate('/dashboard')
   }
   return (
    <Center style={{ height: '100vh' }}>
@@ -40,7 +50,10 @@ function Home () {
       </div>
       <div>
         <IfAuthenticated>
-          <Button variant="subtle" color="dark" onClick={handleLogout}>Logout</Button>
+          <Group position='center' spacing = 'xl'>
+            <Button variant="subtle" color="dark" onClick={handleRedirect}>Contine</Button>
+            <Button variant="subtle" color="dark" onClick={handleLogout}>Logout</Button>
+          </Group>
         </IfAuthenticated>
       </div>
       {/* </Group> */}
