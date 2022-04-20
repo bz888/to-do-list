@@ -7,6 +7,8 @@ import { Bulb, BulbOff } from 'tabler-icons-react'
 
 import Dashboard from './Dashboard'
 import Home from './Home'
+import SignedIn from './SignedIn'
+import { IfAuthenticated } from './Authenticated'
 
 // import Login from './Login'
 
@@ -22,7 +24,10 @@ function App () {
       <MantineProvider theme={{ fontFamily: 'IBM Plex Mono, monospace', colorScheme, headings: { fontFamily: 'IBM Plex Mono, monospace' } }} withGlobalStyles>
         <Routes>
           <Route path='/' element={<Home />}/>
-          <Route path='dashboard' element={<Dashboard />} />
+
+            <Route path='dashboard' element={<IfAuthenticated><Dashboard /></IfAuthenticated>}/>
+
+          <Route path='signedin' element={<SignedIn/>}/>
         </Routes>
         <ActionIcon className='togglebtn'
         onClick={() => handleColorScheme()}

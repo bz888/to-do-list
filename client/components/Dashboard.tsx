@@ -44,7 +44,7 @@ export default function Dashboard () {
   }
   function handleClick (e: SyntheticEvent) {
     e.preventDefault()
-    setModal(true)
+    setModal(!modal)
   }
   return (
     <>
