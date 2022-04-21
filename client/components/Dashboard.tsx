@@ -1,5 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { Button } from '@mantine/core'
+import { Button, Group, Stack } from '@mantine/core'
+import { formList, useForm } from '@mantine/form'
 import React, { useEffect, SyntheticEvent, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -14,6 +15,11 @@ export default function Dashboard () {
   const userStore = useSelector<State, UserAction>(state => state.user)
   // const todoListStore = useSelector<State, TodoState>(state => state.todoList)
   const [todoList, setTodoList] = useState<todoItem[]>([])
+  const todoForm = useForm({
+    initialValues: {
+      todos: formList(todoList)
+    }
+  })
   const [modal, setModal] = useState<boolean>(false)
   const [toggle, setToggle] = useState<boolean>(false)
   const { user, isAuthenticated } = useAuth0()
@@ -31,7 +37,7 @@ export default function Dashboard () {
   }
 
   useEffect(() => {
-    // console.log('userStore useEffect init', userStore)
+    console.log('userStore useEffect init', userStore)
     if (token !== '') {
       // fetchTodoList(token)
       getTodoList(token)
@@ -46,6 +52,7 @@ export default function Dashboard () {
     e.preventDefault()
     setModal(!modal)
   }
+
   return (
     <>
       <Button onClick={handleClick}>Add New To do</Button>
@@ -54,18 +61,33 @@ export default function Dashboard () {
         setToggle={setToggle}
         toggle={toggle}
         setModal={setModal}
-      />}
+        />}
       <h1>Your List</h1>
-      <button onClick={handleLogout}>Logout</button>
+      <Button onClick={handleLogout}>Logout</Button>
+
+      {/* {todoForm.values.todos.map((todo, idx) => {
+        return (
+        <ListItem
+                key={idx}
+                token={token}
+                todoItem={todo}
+                setToggle={setToggle}
+                toggle={toggle}
+              />
+        )
+      })
+    } */}
       {todoList.map((todo, idx) => {
         return (
+          <Stack align="center" style={{ height: 250 }}>
           <ListItem
-            key={idx}
-            token={token}
-            todoItem={todo}
-            setToggle={setToggle}
-            toggle={toggle}
+          key={idx}
+          token={token}
+          todoItem={todo}
+          setToggle={setToggle}
+          toggle={toggle}
           />
+          </Stack>
         )
       })
 
