@@ -19,9 +19,9 @@ export default function AddTodo (props: Props) {
       [e.target.name]: e.target.value
     })
   }
-  function handleSubmit (e: SyntheticEvent) {
-    // e.preventDefault()
-    addTodoAPI(postForm, token)
+  async function handleSubmit (e: SyntheticEvent) {
+    e.preventDefault()
+    await addTodoAPI(postForm, token)
     setPostForm({ ...initPostState })
     setToggle(!toggle)
     setModal(false)
