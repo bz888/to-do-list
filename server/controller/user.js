@@ -19,7 +19,7 @@ async function userExists (user) {
 const getUserByAuth = async (req, res) => {
   const auth0Id = req.user?.sub
   // const { email } = req.params.uid
-  const getUser = await User.findOne({ auth0Id: auth0Id })
+  const getUser = await User.findOne({ auth0Id: auth0Id, email: req.params.uid })
   res.status(StatusCodes.OK).json(getUser)
 }
 

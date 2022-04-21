@@ -9,11 +9,13 @@ function SignedIn () {
   const userStore = useSelector<State, UserAction>(state => state.user)
   // const [registeredUser, setRegisteredUser] = useState(false)
   // loading change to global state
+  const navigate = useNavigate()
+  const { email, token } = userStore
   const [loading, setLoading] = useState(false)
   async function userChecker () {
     console.log(userStore.token)
 
-    checkUserByAuth(userStore.token)
+    checkUserByAuth(email, token)
       .then(userData => {
         console.log(userData)
 
@@ -23,14 +25,15 @@ function SignedIn () {
       .then(() => {
         setLoading(false)
       })
+      .catch(() => {
+        navigate('/')
+      })
   }
 
   useEffect(() => {
     setLoading(() => true)
     userChecker()
   }, [userStore])
-
-  const navigate = useNavigate()
 
   console.log('userStore, SignedIn component: ', userStore)
   async function handleClick (e: SyntheticEvent) {

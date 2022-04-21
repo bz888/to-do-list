@@ -20,7 +20,7 @@ export default function AddTodo (props: Props) {
     })
   }
   function handleSubmit (e: SyntheticEvent) {
-    e.preventDefault()
+    // e.preventDefault()
     addTodoAPI(postForm, token)
     setPostForm({ ...initPostState })
     setToggle(!toggle)

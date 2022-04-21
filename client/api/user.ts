@@ -22,8 +22,8 @@ export function addUser (user: UserAction) {
     .catch(logError)
 }
 
-export function checkUserByAuth (token: string) {
-  return request.post(`${rootURL}/users/checkuser`)
+export function checkUserByAuth (uid: string | undefined, token: string) {
+  return request.post(`${rootURL}/users/checkuser/${uid}`)
     .set('authorization', `Bearer ${token}`)
     .send({ token })
     .then(res => res.body)
