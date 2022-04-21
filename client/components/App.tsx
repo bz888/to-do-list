@@ -25,7 +25,7 @@ function App () {
         <Routes>
           <Route path='/' element={<Home />}/>
 
-            <Route path='dashboard' element={<IfAuthenticated><Dashboard /></IfAuthenticated>}/>
+            <Route path='dashboard' element={<Dashboard />}/>
 
           <Route path='signedin' element={<SignedIn/>}/>
         </Routes>
