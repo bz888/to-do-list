@@ -1,8 +1,11 @@
+import { Button, Drawer, Group, Input } from '@mantine/core'
 import React, { ChangeEvent, Dispatch, SetStateAction, SyntheticEvent, useState } from 'react'
+import { Checklist, Plus } from 'tabler-icons-react'
 import { addTodoAPI } from '../api/todos'
 import { postFormType } from '../types/types'
 
 interface Props {
+  modal: boolean
   token: string,
   toggle: boolean
   setToggle: Dispatch<SetStateAction<boolean>>
@@ -10,7 +13,7 @@ interface Props {
 }
 
 export default function AddTodo (props: Props) {
-  const { token, toggle, setToggle, setModal } = props
+  const { token, toggle, setToggle, setModal, modal } = props
   const initPostState = { description: '', progression: false }
   const [postForm, setPostForm] = useState<postFormType>(initPostState)
   function handleChange (e: ChangeEvent<HTMLInputElement>) {
@@ -23,16 +26,46 @@ export default function AddTodo (props: Props) {
     e.preventDefault()
     await addTodoAPI(postForm, token)
     setPostForm({ ...initPostState })
-    setToggle(!toggle)
     setModal(false)
+    setToggle(!toggle)
   }
   return (
-  <>
-    <form>
-      <label htmlFor='description'>Description: </label>
-      <input type='text' value={postForm.description} name='description' onChange={handleChange}/>
-      <button onClick={handleSubmit}>Add</button>
-    </form>
-  </>
+
+    <Drawer
+      // transition="rotate-left"
+      // transitionDuration={250}
+      // transitionTimingFunction="ease"
+      opened={modal}
+      position="right"
+      onClose={() => setModal(false)}
+      title="Add New To do"
+      padding="xl"
+      size="xl">
+      <Group spacing="xl">
+        <label htmlFor='description'>Description: </label>
+        <Input
+          data-autofocus
+          icon={<Checklist/>}
+          variant="unstyled"
+          type='text'
+          placeholder="New To do"
+          value={postForm.description}
+          name='description'
+          radius="xs"
+          size="xs"
+          onChange={handleChange}
+        />
+        <Button
+          leftIcon={<Plus size={20}/>}
+          variant="outline"
+          color="indigo"
+          radius="xs"
+          size="md"
+          compact
+          onClick={handleSubmit}
+        >Add</Button>
+      </Group>
+    </Drawer>
+
   )
 }

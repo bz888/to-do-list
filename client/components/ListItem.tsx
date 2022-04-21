@@ -60,19 +60,3 @@ export default function ListItem (props: ListItemProp) {
   </Group>
   )
 }
-{ /* <Group key={index} mt="xs">
-      <TextInput
-        placeholder="John Doe"
-        required
-        sx={{ flex: 1 }}
-        {...form.getListInputProps('employees', index, 'name')}
-      />
-      <Switch label="Active" {...form.getListInputProps('employees', index, 'active')} />
-      <ActionIcon
-        color="red"
-        variant="hover"
-        onClick={() => form.removeListItem('employees', index)}
-      >
-        <Trash size={16} />
-      </ActionIcon>
-    </Group> */ }

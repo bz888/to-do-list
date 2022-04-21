@@ -50,13 +50,15 @@ export default function Dashboard () {
   }
   function handleClick (e: SyntheticEvent) {
     e.preventDefault()
-    setModal(!modal)
+    setModal(true)
   }
 
   return (
     <>
       <Button onClick={handleClick}>Add New To do</Button>
-      {modal && <AddTodo
+      {
+      <AddTodo
+        modal={modal}
         token={token}
         setToggle={setToggle}
         toggle={toggle}

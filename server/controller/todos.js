@@ -10,7 +10,7 @@ function timeConverter (time) {
 // list all todos of user
 const getAllTodos = async (req, res) => {
   // console.log(req.user)
-  const todos = await Todo.find({ createdBy: req.user?.sub }).sort('createdAt')
+  const todos = await Todo.find({ createdBy: req.user?.sub }).sort({ createdAt: -1 })
   // res.status(StatusCodes.OK).json({ todos, count: todos.length })
   // res.status(StatusCodes.OK).json(todos)
   res.status(StatusCodes.OK).json(

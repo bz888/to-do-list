@@ -29,7 +29,7 @@ function App () {
 
           <Route path='signedin' element={<SignedIn/>}/>
         </Routes>
-        <ActionIcon className='togglebtn'
+        <ActionIcon style={{ position: 'fixed', top: '95vh', left: '20vw' }}
         onClick={() => handleColorScheme()}
         title="Toggle color scheme"
         >

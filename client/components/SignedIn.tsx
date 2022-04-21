@@ -1,4 +1,4 @@
-import { Button, Loader } from '@mantine/core'
+import { Button, Center, Loader } from '@mantine/core'
 import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -46,14 +46,14 @@ function SignedIn () {
   }
 
   return (
-    <div>
+    <Center style={{ height: '100vh' }}>
       {
         loading
           ? <Loader color="grape" size="xl" variant="dots" />
           : <Button variant="subtle" color="dark" onClick={handleClick}>Continue</Button>
       }
 
-    </div>
+    </Center>
   )
 }
 
