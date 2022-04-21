@@ -25,11 +25,11 @@ function App () {
         <Routes>
           <Route path='/' element={<Home />}/>
 
-            <Route path='dashboard' element={<IfAuthenticated><Dashboard /></IfAuthenticated>}/>
+            <Route path='dashboard' element={<Dashboard />}/>
 
           <Route path='signedin' element={<SignedIn/>}/>
         </Routes>
-        <ActionIcon className='togglebtn'
+        <ActionIcon style={{ position: 'fixed', top: '95vh', left: '20vw' }}
         onClick={() => handleColorScheme()}
         title="Toggle color scheme"
         >

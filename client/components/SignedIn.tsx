@@ -1,4 +1,4 @@
-import { Button, Loader } from '@mantine/core'
+import { Button, Center, Loader } from '@mantine/core'
 import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -9,11 +9,13 @@ function SignedIn () {
   const userStore = useSelector<State, UserAction>(state => state.user)
   // const [registeredUser, setRegisteredUser] = useState(false)
   // loading change to global state
+  const navigate = useNavigate()
+  const { email, token } = userStore
   const [loading, setLoading] = useState(false)
   async function userChecker () {
     console.log(userStore.token)
 
-    checkUserByAuth(userStore.token)
+    checkUserByAuth(email, token)
       .then(userData => {
         console.log(userData)
 
@@ -23,14 +25,15 @@ function SignedIn () {
       .then(() => {
         setLoading(false)
       })
+      .catch(() => {
+        navigate('/')
+      })
   }
 
   useEffect(() => {
     setLoading(() => true)
     userChecker()
   }, [userStore])
-
-  const navigate = useNavigate()
 
   console.log('userStore, SignedIn component: ', userStore)
   async function handleClick (e: SyntheticEvent) {
@@ -43,14 +46,14 @@ function SignedIn () {
   }
 
   return (
-    <div>
+    <Center style={{ height: '100vh' }}>
       {
         loading
           ? <Loader color="grape" size="xl" variant="dots" />
           : <Button variant="subtle" color="dark" onClick={handleClick}>Continue</Button>
       }
 
-    </div>
+    </Center>
   )
 }
 

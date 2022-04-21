@@ -10,4 +10,4 @@ module.exports = router
 // public route (status: working)
 router.post('/', createUser)
 
-router.post('/checkuser/', checkJwt, getUserByAuth)
+router.post('/checkuser/:uid', checkJwt, getUserByAuth)
