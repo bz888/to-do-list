@@ -47,9 +47,9 @@ export default function ListItem (props: ListItemProp) {
     {/* <Box sx={{ height: 100, position: 'relative' }}> */}
       {/* {visible && <Overlay opacity={0.6} color="#000" blur={2} />} */}
       <Checkbox color='lime' radius='xl' id={_id} onChange={handleCheck} checked={progression} />
-      <Blockquote icon={ null }cite={createdAt}>{description}
+      <Blockquote icon={ null }cite={createdAt.slice(0, 25)}>{description}
       {/* <p>Created At: {createdAt}</p> */}
-      <p>Last updated: {updatedAt}</p>
+      <p>Last updated: {updatedAt.slice(0, 25)}</p>
       <ActionIcon onClick={handleDelete}>
         <Trash
           size={18}
