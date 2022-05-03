@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { Button, Group, Stack } from '@mantine/core'
+import { Accordion, Button, Group, Stack } from '@mantine/core'
 import { formList, useForm } from '@mantine/form'
 import React, { useEffect, SyntheticEvent, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -66,34 +66,23 @@ export default function Dashboard () {
         />}
       <h1>Your List</h1>
       <Button onClick={handleLogout}>Logout</Button>
-
-      {/* {todoForm.values.todos.map((todo, idx) => {
-        return (
-        <ListItem
-                key={idx}
-                token={token}
-                todoItem={todo}
-                setToggle={setToggle}
-                toggle={toggle}
-              />
-        )
-      })
-    } */}
-      {todoList.map((todo, idx) => {
-        return (
-          <Stack align="center" style={{ height: 250 }}>
-          <ListItem
-          key={idx}
-          token={token}
-          todoItem={todo}
-          setToggle={setToggle}
-          toggle={toggle}
-          />
-          </Stack>
-        )
-      })
-
-      }
+      <Accordion>
+        {todoList.map((todo, idx) => {
+          return (
+          // {/* <Stack align="center" style={{ height: 250 }}> */}
+          <Accordion.Item label={todo.description}>
+            <ListItem
+              key={idx}
+              token={token}
+              todoItem={todo}
+              setToggle={setToggle}
+              toggle={toggle}
+            />
+          </Accordion.Item>
+          // {/* </Stack> */}
+          )
+        })}
+      </Accordion>
     </>
   )
 }
