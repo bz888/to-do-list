@@ -4,11 +4,12 @@
   "description": "todolist",
   "main": "server/public/index.js",
   "scripts": {
-    "dev": "run-p client server",
-    "client": "webpack --watch",
-    "server": "nodemon server",
-    "start": "ts-node server",
-    "build": "run-p webpack start",
+    "dev": "run-p dev:client dev:server",
+    "dev:client": "webpack --watch",
+    "dev:server": "nodemon server",
+    "heroku-build": "run-p heroku:build heroku:server",
+    "heroku:build": "webpack",
+    "heroku:server": "tsc",
     "test": "jest --watchAll",
     "lint": "eslint --ext .ts,.tsx .",
     "webpack": "webpack --config ./webpack.config.js"
