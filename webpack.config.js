@@ -13,10 +13,10 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development'
 // }
 
 module.exports = (env) => {
-  const isProduction = env === 'production'
+  // const isProduction = env === 'production'
   return {
     entry: './client/index.tsx',
-    mode: isProduction ? 'production' : 'development',
+    mode: 'development',
     output: {
       path: path.join(__dirname, './server/public'),
       filename: 'bundle.js'
