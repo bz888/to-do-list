@@ -6,7 +6,7 @@ require('dotenv').config()
 
 // App Config
 const server = express()
-server.use(express.static(path.join(__dirname, './public')))
+server.use(express.static(path.join(__dirname, 'public')))
 server.use(express.json())
 
 // API Endpoints
