@@ -2,7 +2,7 @@
 const path = require('path')
 const express = require('express')
 const { default: mongoose } = require('mongoose')
-require('dotenv').config()
+require('dotenv').config({ path: '.env' })
 
 // App Config
 const server = express()
