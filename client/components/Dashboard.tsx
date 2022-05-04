@@ -1,29 +1,31 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { Accordion, Button, Group, Stack } from '@mantine/core'
-import { formList, useForm } from '@mantine/form'
+import { Accordion, ActionIcon, Button, Center, Container, Group, Space, Stack, Title } from '@mantine/core'
+// import { formList, useForm } from '@mantine/form'
 import React, { useEffect, SyntheticEvent, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { fetchTodoList } from '../actions/todos'
+import { CirclePlus, Logout } from 'tabler-icons-react'
+// import { useNavigate } from 'react-router-dom'
+// import { fetchTodoList } from '../actions/todos'
 import { getAllTodosAPI } from '../api/todos'
 import { ActiveUser, TodoState, State, UserAction, todoItem } from '../types/types'
 import AddTodo from './AddTodo'
-import { IfAuthenticated } from './Authenticated'
+// import { IfAuthenticated } from './Authenticated'
 import ListItem from './ListItem'
+// import Nav from './Nav'
 
 export default function Dashboard () {
   const userStore = useSelector<State, UserAction>(state => state.user)
   // const todoListStore = useSelector<State, TodoState>(state => state.todoList)
   const [todoList, setTodoList] = useState<todoItem[]>([])
-  const todoForm = useForm({
-    initialValues: {
-      todos: formList(todoList)
-    }
-  })
+  // const todoForm = useForm({
+  //   initialValues: {
+  //     todos: formList(todoList)
+  //   }
+  // })
   const [modal, setModal] = useState<boolean>(false)
   const [toggle, setToggle] = useState<boolean>(false)
-  const { user, isAuthenticated } = useAuth0()
-  const navigate = useNavigate()
+  // const { user, isAuthenticated } = useAuth0()
+  // const navigate = useNavigate()
   const { token } = userStore
   const { logout } = useAuth0()
 
@@ -55,7 +57,19 @@ export default function Dashboard () {
 
   return (
     <>
-      <Button onClick={handleClick}>Add New To do</Button>
+    <Space h='xl'/>
+    <Container size={500}>
+      <Group>
+        <Title>Your List</Title>
+        <ActionIcon onClick={handleClick}>
+          <CirclePlus/>
+        </ActionIcon>
+        <ActionIcon onClick={handleLogout}>
+          <Logout/>
+        </ActionIcon>
+      </Group>
+      <Space h='xl'/>
+
       {
       <AddTodo
         modal={modal}
@@ -64,12 +78,10 @@ export default function Dashboard () {
         toggle={toggle}
         setModal={setModal}
         />}
-      <h1>Your List</h1>
-      <Button onClick={handleLogout}>Logout</Button>
+
       <Accordion>
         {todoList.map((todo, idx) => {
           return (
-          // {/* <Stack align="center" style={{ height: 250 }}> */}
           <Accordion.Item label={todo.description}>
             <ListItem
               key={idx}
@@ -79,10 +91,11 @@ export default function Dashboard () {
               toggle={toggle}
             />
           </Accordion.Item>
-          // {/* </Stack> */}
           )
         })}
       </Accordion>
+      {/* </Center> */}
+      </Container>
     </>
   )
 }

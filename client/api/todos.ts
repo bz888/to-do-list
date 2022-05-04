@@ -1,5 +1,5 @@
 import request from 'superagent'
-import { postFormType, todoPostAPI, updateType } from '../types/types'
+import { postFormType, updateType } from '../types/types'
 
 const rootURL = '/api/v1'
 

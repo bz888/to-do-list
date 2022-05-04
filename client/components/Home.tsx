@@ -2,7 +2,7 @@ import { useAuth0 } from '@auth0/auth0-react'
 import React, { SyntheticEvent, useEffect } from 'react'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
 import { Button, Title, Center, Group, SimpleGrid, Stack } from '@mantine/core'
-import { useStyles } from '../styles/mantineStyles'
+// import { useStyles } from '../styles/mantineStyles'
 import { useNavigate } from 'react-router-dom'
 
 function Home () {
@@ -38,8 +38,7 @@ function Home () {
       <div>
         <Title>welcome to your to do list</Title>
       </div>
-      {/* {user} */}
-      {/* <Group> */}
+
       <div>
         <IfNotAuthenticated>
           <Group position='center' spacing = 'xl'>
