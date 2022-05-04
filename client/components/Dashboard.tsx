@@ -1,17 +1,12 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { Accordion, ActionIcon, Button, Center, Container, Group, Space, Stack, Title } from '@mantine/core'
-// import { formList, useForm } from '@mantine/form'
+import { Accordion, ActionIcon, Container, Group, Space, Title } from '@mantine/core'
 import React, { useEffect, SyntheticEvent, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { CirclePlus, Logout } from 'tabler-icons-react'
-// import { useNavigate } from 'react-router-dom'
-// import { fetchTodoList } from '../actions/todos'
 import { getAllTodosAPI } from '../api/todos'
 import { State, UserAction, todoItem } from '../types/types'
 import AddTodo from './AddTodo'
-// import { IfAuthenticated } from './Authenticated'
 import ListItem from './ListItem'
-// import Nav from './Nav'
 
 export default function Dashboard () {
   const userStore = useSelector<State, UserAction>(state => state.user)
