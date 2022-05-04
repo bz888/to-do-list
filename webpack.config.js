@@ -9,7 +9,7 @@ module.exports = {
   entry: './client/index.tsx',
   mode: 'development',
   output: {
-    path: path.join(__dirname, 'server/public'),
+    path: path.join(__dirname, './server/public'),
     filename: 'bundle.js'
   },
   module: {
