@@ -20,10 +20,3 @@ router.delete('/delete/testing/:id', checkJwt, deleteTodoByID)
 
 router.patch('/update/testing/:id', checkJwt, patchTodoByID)
 router.patch('/update/testing/', checkJwt, patchTodo)
-
-// post route for todos
-// patch route (update)
-// get route
-// delete route
-
-// router.post('/', checkJwt, )

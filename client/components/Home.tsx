@@ -6,13 +6,11 @@ import { Button, Title, Center, Group, SimpleGrid, Stack } from '@mantine/core'
 import { useNavigate } from 'react-router-dom'
 
 function Home () {
-  // const { classes } = useStyles()
   const { loginWithRedirect, user, logout } = useAuth0()
   useEffect(() => {
     console.log(user)
   }, [user])
   const navigate = useNavigate()
-  // console.log(user)
 
   function handleLogin (e: SyntheticEvent) {
     e.preventDefault()
@@ -58,18 +56,6 @@ function Home () {
       {/* </Group> */}
       </Stack>
    </Center>
-
-  // <div className={classes.wrapper}>
-  //   <Title>welcome to your to do list</Title>
-  //   {/* {user} */}
-  //   <IfNotAuthenticated>
-  //     <Button className={classes.child} onClick={handleLogin}>Login</Button>
-  //   </IfNotAuthenticated>
-
-  //   <IfAuthenticated>
-  //     <Button className={classes.child} onClick={handleLogout}>Logout</Button>
-  //   </IfAuthenticated>
-  // </div>
   )
 }
 

@@ -22,17 +22,9 @@ interface ListItemProp {
 export default function ListItem (props: ListItemProp) {
   const { toggle, setToggle, token, todoItem } = props
   const { description, createdAt, _id, updatedAt, progression } = todoItem
-  // const [updateTodo, setUpdateTodo] = useState<ListItemObj>(todoItem)
-  // const [visible, setVisible] = useState(false)
-  // useEffect(() => {
-  //   if (progression) {
-  //     setVisible(true)
-  //   }
-  // }, [progression])
 
   async function handleCheck (e: SyntheticEvent) {
     // e.preventDefault()
-    // await patchTodoAPI({ ...todoItem, progression: !progression }, token)
     await patchTodoAPIParams({ ...todoItem, progression: !progression }, token)
     setToggle(!toggle)
   }
@@ -50,7 +42,8 @@ export default function ListItem (props: ListItemProp) {
             size={18}
             color={'#d27979'}/>
         </ActionIcon>
-        <Blockquote icon={ null }cite={createdAt.slice(0, 25)}>{description}
+        <Blockquote icon={ null }cite={createdAt.slice(0, 25)}>
+        {description}
         <p>Last updated: {updatedAt.slice(0, 25)}</p>
         </Blockquote>
     </Group>

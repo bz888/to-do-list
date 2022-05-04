@@ -32,9 +32,6 @@ export default function AddTodo (props: Props) {
   return (
 
     <Drawer
-      // transition="rotate-left"
-      // transitionDuration={250}
-      // transitionTimingFunction="ease"
       opened={modal}
       position="right"
       onClose={() => setModal(false)}

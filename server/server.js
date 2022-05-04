@@ -23,7 +23,6 @@ mongoose.connect(uri, {
   useUnifiedTopology: true
 }).then(() => console.log('MongoDB Connected...')).catch(err => console.error(err))
 
-// i am not sure why, but we can investigate later on if we fuck up
 server.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './public/index.html'))
 })

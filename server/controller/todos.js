@@ -9,10 +9,7 @@ function timeConverter (time) {
 
 // list all todos of user
 const getAllTodos = async (req, res) => {
-  // console.log(req.user)
   const todos = await Todo.find({ createdBy: req.user?.sub }).sort({ createdAt: -1 })
-  // res.status(StatusCodes.OK).json({ todos, count: todos.length })
-  // res.status(StatusCodes.OK).json(todos)
   res.status(StatusCodes.OK).json(
     todos.map(ele => ({
       // ...ele,
@@ -45,7 +42,6 @@ const getTodo = async (req, res) => {
 // update
 const patchTodoByID = async (req, res) => {
   const { todo } = req.body
-  // console.log('patch route hit: ', todo)
   const patchTodo = await Todo.findByIdAndUpdate(
     { _id: req.params.id, createdBy: req.user?.sub },
     todo,
@@ -59,7 +55,6 @@ const patchTodoByID = async (req, res) => {
 
 const patchTodo = async (req, res) => {
   const { todo } = req.body
-  // console.log('patch route hit: ', todo)
   const patchTodo = await Todo.findByIdAndUpdate(
     { _id: todo._id, createdBy: req.user?.sub },
     todo,
@@ -73,8 +68,6 @@ const patchTodo = async (req, res) => {
 
 // delete
 const deleteTodoByID = async (req, res) => {
-  // console.log('req.params: ', req.params)
-  // console.log('auth0Id testing post route: ', req.user)
   try {
     const todo = await Todo.findByIdAndRemove({
       _id: req.params.id,
@@ -101,7 +94,6 @@ const deleteTodo = async (req, res) => {
 }
 
 const createTodo = async (req, res) => {
-  // console.log('user sub testing post route: ', req.body)
   const { todo } = req.body
   const auth0Id = req.user?.sub
   const newTodo = {

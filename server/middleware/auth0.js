@@ -3,11 +3,7 @@ const jwksRsa = require('jwks-rsa')
 require('dotenv').config()
 
 const domain = process.env.DOMAIN
-console.log('checkJwt domain: ', domain)
 const audience = process.env.AUDIENCE
-console.log('checkJwt aduience: ', audience)
-// const domain = process.env.DOMAIN
-// const audience = process.env.AUDIENCE
 
 const checkJwt = jwt({
   secret: jwksRsa.expressJwtSecret({
