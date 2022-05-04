@@ -8,7 +8,7 @@
     "dev:client": "webpack --watch",
     "dev:server": "nodemon server",
     "heroku-build": "run-p heroku:build heroku:server",
-    "heroku:build": "webpack",
+    "heroku:client": "webpack",
     "heroku:server": "tsc",
     "test": "jest --watchAll",
     "lint": "eslint --ext .ts,.tsx .",
