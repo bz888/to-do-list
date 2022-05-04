@@ -5,11 +5,12 @@
   "main": "server/public/index.js",
   "scripts": {
     "webpack": "webpack --config ./webpack.config.js",
+    "webpack:prod": "webpack --config ./webpack.prod.js",
     "dev": "run-p dev:client dev:server",
     "dev:client": "webpack --watch",
     "dev:server": "nodemon server",
     "heroku-build": "run-p heroku:client heroku:server",
-    "heroku:client": "npm run webpack",
+    "heroku:client": "npm run webpack:prod",
     "heroku:server": "tsc",
     "test": "jest --watchAll",
     "lint": "eslint --ext .ts,.tsx ."
