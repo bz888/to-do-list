@@ -8,6 +8,9 @@
     "client": "webpack --watch",
     "server": "nodemon server",
     "start": "ts-node server",
+    "build": "run-p build:client build:server",
+    "build:client": "npm run webpack -- --mode production",
+    "build:server" : "ts-node server",
     "test": "jest --watchAll",
     "lint": "eslint --ext .ts,.tsx .",
     "webpack": "webpack --config ./webpack.config.js"
