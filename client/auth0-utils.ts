@@ -8,7 +8,6 @@ export async function cacheUser (useAuth0: Auth0Hook) {
   const { isAuthenticated, getAccessTokenSilently, user } = useAuth0()
   if (isAuthenticated) {
     try {
-      // async keyword, can use .then, this is a promise
       const accessToken = await getAccessTokenSilently()
 
       const userToSave = {
@@ -16,8 +15,6 @@ export async function cacheUser (useAuth0: Auth0Hook) {
         email: user?.email,
         token: accessToken
       }
-      // console.log('store dispatch: ', userToSave)
-      // almost need to dispatch to db
       store.dispatch(setUser(userToSave))
     } catch (err) {
       console.error(err)

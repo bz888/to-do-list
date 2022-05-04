@@ -1,9 +1,9 @@
 import { Button, Center, Loader } from '@mantine/core'
-import React, { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react'
+import React, { SyntheticEvent, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { addUser, checkUserByAuth } from '../api/user'
-import { formVals, State, UserAction } from '../types/types'
+import { State, UserAction } from '../types/types'
 
 function SignedIn () {
   const userStore = useSelector<State, UserAction>(state => state.user)
@@ -13,12 +13,8 @@ function SignedIn () {
   const { email, token } = userStore
   const [loading, setLoading] = useState(false)
   async function userChecker () {
-    console.log(userStore.token)
-
     checkUserByAuth(email, token)
       .then(userData => {
-        console.log(userData)
-
         if (userData === null) { addUser(userStore) }
         return null
       })
@@ -35,7 +31,6 @@ function SignedIn () {
     userChecker()
   }, [userStore])
 
-  console.log('userStore, SignedIn component: ', userStore)
   async function handleClick (e: SyntheticEvent) {
     e.preventDefault()
     if (!userStore) {
@@ -52,7 +47,6 @@ function SignedIn () {
           ? <Loader color="grape" size="xl" variant="dots" />
           : <Button variant="subtle" color="dark" onClick={handleClick}>Continue</Button>
       }
-
     </Center>
   )
 }

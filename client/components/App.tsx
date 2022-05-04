@@ -13,12 +13,12 @@ import { IfAuthenticated } from './Authenticated'
 // import Login from './Login'
 
 function App () {
+  cacheUser(useAuth0)
   const [colorScheme, setColorScheme] = useState<ColorScheme>('light')
   function handleColorScheme (value?: ColorScheme) {
     setColorScheme(value || (colorScheme === 'dark' ? 'light' : 'dark'))
   }
   const dark = colorScheme === 'dark'
-  cacheUser(useAuth0)
   return (
     <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={handleColorScheme}>
       <MantineProvider theme={{ fontFamily: 'IBM Plex Mono, monospace', colorScheme, headings: { fontFamily: 'IBM Plex Mono, monospace' } }} withGlobalStyles>

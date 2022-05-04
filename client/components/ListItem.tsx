@@ -1,8 +1,7 @@
-import { ActionIcon, Blockquote, Box, Checkbox, Group, Switch, Overlay, AccordionItem, Accordion } from '@mantine/core'
-import { useHover } from '@mantine/hooks'
-import React, { Dispatch, SetStateAction, SyntheticEvent, useEffect, useRef, useState } from 'react'
-import { Cheese, Trash } from 'tabler-icons-react'
-import { deleteTodoAPIParams, patchTodoAPI, patchTodoAPIParams } from '../api/todos'
+import { ActionIcon, Blockquote, Checkbox, Group } from '@mantine/core'
+import React, { Dispatch, SetStateAction, SyntheticEvent } from 'react'
+import { Trash } from 'tabler-icons-react'
+import { deleteTodoAPIParams, patchTodoAPIParams } from '../api/todos'
 import { ListItem } from '../types/types'
 
 interface ListItemObj {

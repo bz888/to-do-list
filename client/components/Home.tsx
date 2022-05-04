@@ -1,15 +1,15 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import React, { SyntheticEvent, useEffect } from 'react'
+import React, { SyntheticEvent } from 'react'
 import { IfAuthenticated, IfNotAuthenticated } from './Authenticated'
-import { Button, Title, Center, Group, SimpleGrid, Stack } from '@mantine/core'
+import { Button, Title, Center, Group, Stack } from '@mantine/core'
 // import { useStyles } from '../styles/mantineStyles'
 import { useNavigate } from 'react-router-dom'
 
 function Home () {
-  const { loginWithRedirect, user, logout } = useAuth0()
-  useEffect(() => {
-    console.log(user)
-  }, [user])
+  const { loginWithRedirect, logout } = useAuth0()
+  // useEffect(() => {
+  //   // console.log(user)
+  // }, [user])
   const navigate = useNavigate()
 
   function handleLogin (e: SyntheticEvent) {
@@ -53,7 +53,6 @@ function Home () {
           </Group>
         </IfAuthenticated>
       </div>
-      {/* </Group> */}
       </Stack>
    </Center>
   )

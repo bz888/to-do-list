@@ -7,7 +7,7 @@ import { CirclePlus, Logout } from 'tabler-icons-react'
 // import { useNavigate } from 'react-router-dom'
 // import { fetchTodoList } from '../actions/todos'
 import { getAllTodosAPI } from '../api/todos'
-import { ActiveUser, TodoState, State, UserAction, todoItem } from '../types/types'
+import { State, UserAction, todoItem } from '../types/types'
 import AddTodo from './AddTodo'
 // import { IfAuthenticated } from './Authenticated'
 import ListItem from './ListItem'
@@ -15,13 +15,8 @@ import ListItem from './ListItem'
 
 export default function Dashboard () {
   const userStore = useSelector<State, UserAction>(state => state.user)
-  // const todoListStore = useSelector<State, TodoState>(state => state.todoList)
   const [todoList, setTodoList] = useState<todoItem[]>([])
-  // const todoForm = useForm({
-  //   initialValues: {
-  //     todos: formList(todoList)
-  //   }
-  // })
+
   const [modal, setModal] = useState<boolean>(false)
   const [toggle, setToggle] = useState<boolean>(false)
   // const { user, isAuthenticated } = useAuth0()
@@ -39,7 +34,6 @@ export default function Dashboard () {
   }
 
   useEffect(() => {
-    console.log('userStore useEffect init', userStore)
     if (token !== '') {
       // fetchTodoList(token)
       getTodoList(token)
