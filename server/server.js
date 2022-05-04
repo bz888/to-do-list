@@ -3,7 +3,7 @@ const path = require('path')
 const express = require('express')
 const { default: mongoose } = require('mongoose')
 require('dotenv').config()
-require('dotenv').load({ silent: true })
+// require('dotenv').load({ silent: true })
 
 // App Config
 const server = express()
@@ -26,17 +26,17 @@ mongoose.connect(uri, {
 }).then(() => console.log('MongoDB Connected...')).catch(err => console.error(err))
 
 // IP address deployment
-const url = require('url')
-const HttpsProxyAgent = require('https-proxy-agent')
-const request = require('request')
+// const url = require('url')
+// const HttpsProxyAgent = require('https-proxy-agent')
+// const request = require('request')
 
-const testEndPoint = 'https://ip.quotaguard.com'
-const proxy = process.env.env.QUOTAGUARDSHIELD_URL
-const agent = new HttpsProxyAgent(proxy)
-const options = {
-  uri: url.parse(testEndPoint),
-  agent
-}
+// const testEndPoint = 'https://ip.quotaguard.com'
+// const proxy = process.env.env.QUOTAGUARDSHIELD_URL
+// const agent = new HttpsProxyAgent(proxy)
+// const options = {
+//   uri: url.parse(testEndPoint),
+//   agent
+// }
 
 // async function callback (error, response, body) {
 //   try {
