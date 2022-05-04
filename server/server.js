@@ -6,12 +6,12 @@ require('dotenv').config()
 
 // App Config
 const server = express()
-server.use(express.static(path.join(__dirname, './public')))
+server.use(express.static(path.join(__dirname, '/public')))
 server.use(express.json())
 
 // API Endpoints
-const todos = require('./routes/todos')
-const users = require('./routes/users')
+const todos = require('/routes/todos')
+const users = require('/routes/users')
 server.use('/api/v1/todos', todos)
 server.use('/api/v1/users', users)
 
