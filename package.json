@@ -5,7 +5,7 @@
   "main": "server/public/index.js",
   "scripts": {
     "webpack": "webpack --config ./webpack.config.js",
-    "webpack:prod": "webpack --config ./webpack.prod.js",
+    "webpack:prod": "webpack serve --hot --config ./webpack.prod.js",
     "dev": "run-p dev:client dev:server",
     "dev:client": "webpack --watch",
     "dev:server": "nodemon server",
