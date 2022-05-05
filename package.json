@@ -11,7 +11,7 @@
     "dev:server": "nodemon server",
     "heroku-build": "run-p heroku:client heroku:server",
     "heroku:client": "npm run webpack:prod",
-    "heroku:server": "tsc",
+    "heroku:server": "node server",
     "test": "jest --watchAll",
     "lint": "eslint --ext .ts,.tsx ."
   },
