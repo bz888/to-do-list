@@ -22,6 +22,7 @@ interface ListItemProp {
 export default function ListItem (props: ListItemProp) {
   const { toggle, setToggle, token, todoItem } = props
   const { description, createdAt, _id, updatedAt, progression } = todoItem
+  const [edit, setEdit] = useState(false)
   // const [updateTodo, setUpdateTodo] = useState<ListItemObj>(todoItem)
   // const [visible, setVisible] = useState(false)
   // useEffect(() => {
@@ -29,6 +30,9 @@ export default function ListItem (props: ListItemProp) {
   //     setVisible(true)
   //   }
   // }, [progression])
+  function handleUpdate (e: SyntheticEvent) {
+    setEdit(true)
+  }
 
   async function handleCheck (e: SyntheticEvent) {
     // e.preventDefault()
