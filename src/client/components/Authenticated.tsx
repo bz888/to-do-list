@@ -1,8 +1,8 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import React, { ReactChild, ReactChildren } from 'react'
+import React, { ReactNode } from 'react'
 
 interface AuxProps {
-  children: ReactChild | ReactChildren;
+  children: ReactNode;
 }
 
 const isAuthenticated = () => {

@@ -1,16 +1,18 @@
-const Todo = require('../models/Todo')
-const { StatusCodes } = require('http-status-codes')
-const { BadRequestError, NotFoundError } = require('../errors')
+import { Todo } from '../models/Todo'
+import { StatusCodes } from 'http-status-codes'
+// import { BadRequestError, NotFoundError } from '../errors'
+import { Request, Response } from 'express'
+import { TodoObjType } from '../types/types'
 
-function timeConverter (time) {
+function timeConverter (time: Date): string {
   const data = new Date(time)
   return data.toString()
 }
 
 // list all todos of user
-const getAllTodos = async (req, res) => {
+export const getAllTodos = async (req: Request, res: Response) => {
   // console.log(req.user)
-  const todos = await Todo.find({ createdBy: req.user?.sub }).sort({ createdAt: -1 })
+  const todos: TodoObjType[] = await Todo.find({ createdBy: req.user?.sub }).sort({ createdAt: -1 })
   // res.status(StatusCodes.OK).json({ todos, count: todos.length })
   // res.status(StatusCodes.OK).json(todos)
   res.status(StatusCodes.OK).json(
@@ -26,24 +28,25 @@ const getAllTodos = async (req, res) => {
 }
 
 // get individual todo
-const getTodo = async (req, res) => {
+export const getTodo = async (req: Request, res: Response) => {
   const {
-    user: { auth0Id },
+    // user: { auth0Id },
     params: { id: todoId }
   } = req
 
   const todo = await Todo.findOne({
     _id: todoId,
-    createdBy: auth0Id
+    createdBy: req.user?.auth0Id
   })
   if (!todo) {
-    throw new NotFoundError(`No todo with id ${todoId}`)
+    res.json(`No todo with id ${todoId}`)
+    // throw new NotFoundError(`No todo with id ${todoId}`)
   }
   res.status(StatusCodes.OK).json({ todo })
 }
 
 // update
-const patchTodoByID = async (req, res) => {
+export const patchTodoByID = async (req: Request, res: Response) => {
   const { todo } = req.body
   // console.log('patch route hit: ', todo)
   const patchTodo = await Todo.findByIdAndUpdate(
@@ -52,12 +55,13 @@ const patchTodoByID = async (req, res) => {
     { new: true, runValidators: true }
   )
   if (!patchTodo) {
-    throw new NotFoundError(`No Todo with id ${req.params.id}`)
+    res.json(`No Todo with id ${req.params.id}`)
+    // throw new NotFoundError(`No Todo with id ${req.params.id}`)
   }
   res.status(StatusCodes.OK).json({ todo })
 }
 
-const patchTodo = async (req, res) => {
+export const patchTodo = async (req: Request, res: Response) => {
   const { todo } = req.body
   // console.log('patch route hit: ', todo)
   const patchTodo = await Todo.findByIdAndUpdate(
@@ -66,13 +70,14 @@ const patchTodo = async (req, res) => {
     { new: true, runValidators: true }
   )
   if (!patchTodo) {
-    throw new NotFoundError(`No Todo with id ${req.params.id}`)
+    res.json(`No Todo with id ${req.params.id}`)
+    // throw new NotFoundError(`No Todo with id ${req.params.id}`)
   }
   res.status(StatusCodes.OK).json({ todo })
 }
 
 // delete
-const deleteTodoByID = async (req, res) => {
+export const deleteTodoByID = async (req: Request, res: Response) => {
   // console.log('req.params: ', req.params)
   // console.log('auth0Id testing post route: ', req.user)
   try {
@@ -82,11 +87,12 @@ const deleteTodoByID = async (req, res) => {
     })
     res.status(StatusCodes.OK).json(`${todo._id} has been deleted`)
   } catch (err) {
-    throw new NotFoundError(`No Todo with id ${req.params.id}`)
+    res.json(`No Todo with id ${req.params.id}`)
+    // throw new NotFoundError(`No Todo with id ${req.params.id}`)
   }
 }
 
-const deleteTodo = async (req, res) => {
+export const deleteTodo = async (req: Request, res: Response) => {
   try {
     const { todo } = req.body
 
@@ -96,11 +102,12 @@ const deleteTodo = async (req, res) => {
     })
     res.status(StatusCodes.OK).json(`${todoDEL._id} has been deleted`)
   } catch (err) {
-    throw new NotFoundError(`No Todo with id ${req.params.id}`)
+    res.json(`No Todo with id ${req.params.id}`)
+    // throw new NotFoundError(`No Todo with id ${req.params.id}`)
   }
 }
 
-const createTodo = async (req, res) => {
+export const createTodo = async (req: Request, res: Response) => {
   // console.log('user sub testing post route: ', req.body)
   const { todo } = req.body
   const auth0Id = req.user?.sub
@@ -117,12 +124,12 @@ const createTodo = async (req, res) => {
   }
 }
 
-module.exports = {
-  getTodo,
-  createTodo,
-  getAllTodos,
-  deleteTodo,
-  deleteTodoByID,
-  patchTodoByID,
-  patchTodo
-}
+// module.exports = {
+//   getTodo,
+//   createTodo,
+//   getAllTodos,
+//   deleteTodo,
+//   deleteTodoByID,
+//   patchTodoByID,
+//   patchTodo
+// }
