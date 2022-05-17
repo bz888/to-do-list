@@ -25,11 +25,15 @@ This application is able to register new users and the users are able to see the
 
 ### BackEnd
 
+- Typescript
 - Node.js
 - Express
 - JWT passing
 
 ## Upcoming Features
 
+- Reduce webpack bundle size
+- Update todos
+- Graph of completed and uncompleted
 - Jest Testing BackEnd Routes
 - Jest playwright Automative testing frontEnd
