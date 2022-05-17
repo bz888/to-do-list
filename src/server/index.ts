@@ -1,5 +1,5 @@
 // Listener
-const server = require('./server')
+import { server } from './server'
 
 const port = process.env.PORT || 6969
 

@@ -1,11 +1,11 @@
 const path = require('path')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+// const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
-console.log('dev webpack loaded')
+console.log('prod webpack loaded')
 
 module.exports = {
   entry: './src/client/index.tsx',
-  mode: 'development',
+  mode: 'production',
   output: {
     path: path.join(__dirname, 'public'),
     filename: 'bundle.js'
@@ -23,7 +23,7 @@ module.exports = {
       }
     ]
   },
-  plugins: [new ForkTsCheckerWebpackPlugin()],
+  // plugins: [new ForkTsCheckerWebpackPlugin()],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx']
   },

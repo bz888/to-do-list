@@ -1,6 +1,6 @@
-const { default: mongoose } = require('mongoose')
+import { Schema, model } from 'mongoose'
 
-const todoSchema = mongoose.Schema(
+const todoSchema = new Schema(
   {
     progression: {
       type: Boolean,
@@ -21,6 +21,6 @@ const todoSchema = mongoose.Schema(
   { timestamps: true }
 )
 
-const Todo = mongoose.model('Todos', todoSchema)
+export const Todo = model('Todos', todoSchema)
 
-module.exports = Todo
+// module.exports = Todo
